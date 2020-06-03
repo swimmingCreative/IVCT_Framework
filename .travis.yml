@@ -19,8 +19,9 @@ install:
 
 script:
   - export VERSION=$(grep "ivctVersion" ./.shared/libraries.gradle | awk '{print $3}' | tr -d \')
+  - printf "VERSION is %s, TRAVIS_BRANCH is %s." $VERSION, $TRAVIS_BRANCH
   # tag branch version
-  - docker tag cloudedcliff/logsink:$VERSION cloudedcliff/logsink:$TRAVIS_BRANCH-latest
+  - docker tag ivct/logsink:$VERSION ivct/logsink:$TRAVIS_BRANCH-latest
   - docker tag cloudedcliff/runtime-config:$VERSION cloudedcliff/runtime-config:$TRAVIS_BRANCH-latest
   - docker tag cloudedcliff/ivct-gui:$VERSION cloudedcliff/ivct-gui:$TRAVIS_BRANCH-latest
   - docker tag cloudedcliff/tc-runner:pi-skeleton-$VERSION cloudedcliff/tc-runner:pi-skeleton-$TRAVIS_BRANCH-latest
